@@ -10,7 +10,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
  - Songs are now stored in markdown.
  - Song index is separated from lyrics using build script.
+ - Updated Java version
  - Updated gradle version
+ - Updated dependencies
 
 ## [2.0.0] - 2026-05-19
 ### Added
