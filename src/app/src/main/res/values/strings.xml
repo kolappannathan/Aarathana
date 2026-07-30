@@ -1,10 +1,13 @@
 <resources>
-    <string name="app_name">Aarathana</string>
-    <string name="title_activity_main">Aarathana</string>
-    <string name="pages_home" translatable="false">pages_home</string>
-    <string name="pages_lyrics" translatable="false">pages_lyrics</string>
-    <string name="back_button">Back</string>
-    <string name="search">Search</string>
-    <string name="search_hint">Search by title or author</string>
-    <string name="no_results">No songs found</string>
+    <string name="app_name" translatable="false">Aarathana</string>
+    <string name="home_title">Aarathana</string>
+    <string name="back_button" translatable="false">Back</string>
+    <string name="search_page_title">Search</string>
+    <string name="search_page_search_hint">Search by title or author</string>
+    <string name="search_page_no_results">No songs found</string>
+    <string name="app_nav_drawer_search">Search</string>
+    <string name="app_nav_drawer_home">Home</string>
+    <string name="app_nav_drawer_about">About</string>
+    <string name="app_display_title">Aarathana</string>
+    <string name="about_page_title">About</string>
 </resources>

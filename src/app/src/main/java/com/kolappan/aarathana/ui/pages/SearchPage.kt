@@ -34,7 +34,7 @@ fun SearchPage(
             AarathanaTopBar(
                 navController = navController,
                 canNavigateBack = true,
-                title = stringResource(R.string.search)
+                title = stringResource(R.string.search_page_title)
             )
         }
     ) { innerPadding ->
@@ -49,7 +49,7 @@ fun SearchPage(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
-                placeholder = { Text(stringResource(R.string.search_hint)) },
+                placeholder = { Text(stringResource(R.string.search_page_search_hint)) },
                 leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
                 trailingIcon = {
                     if (searchQuery.isNotEmpty()) {
@@ -63,7 +63,7 @@ fun SearchPage(
 
             if (filteredSongs.isEmpty() && searchQuery.isNotEmpty()) {
                 Text(
-                    text = stringResource(R.string.no_results),
+                    text = stringResource(R.string.search_page_no_results),
                     modifier = Modifier.padding(16.dp),
                     style = MaterialTheme.typography.bodyLarge
                 )

@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,7 +36,7 @@ fun AboutPage(navController: NavController, onMenuClick: () -> Unit) {
         "Unknown"
     }
     
-    val appName = context.applicationInfo.loadLabel(packageManager).toString()
+    val appName = stringResource(id = R.string.app_display_title)
     val githubUrl = "https://github.com/kolappannathan/aarathana"
 
     Scaffold(
@@ -43,7 +44,7 @@ fun AboutPage(navController: NavController, onMenuClick: () -> Unit) {
             AarathanaTopBar(
                 navController = navController,
                 canNavigateBack = false,
-                title = "About",
+                title = stringResource(R.string.about_page_title),
                 onMenuClick = onMenuClick
             )
         }

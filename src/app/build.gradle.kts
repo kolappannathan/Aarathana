@@ -20,6 +20,11 @@ android {
             useSupportLibrary = true
         }
     }
+
+    androidResources {
+        generateLocaleConfig = true
+        localeFilters += listOf("en", "ta")
+    }
     signingConfigs {
         create("release") {
             enableV1Signing = true

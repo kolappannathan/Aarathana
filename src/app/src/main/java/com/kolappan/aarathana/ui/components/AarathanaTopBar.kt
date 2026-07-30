@@ -31,7 +31,7 @@ import com.kolappan.aarathana.R
 fun AarathanaTopBar(
     navController: NavController,
     canNavigateBack: Boolean = false,
-    title: String = stringResource(id = R.string.app_name),
+    title: String = stringResource(id = R.string.app_display_title),
     onMenuClick: (() -> Unit)? = null,
     actions: @Composable RowScope.() -> Unit = {}
 ) {

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search_page_title">தேடல்</string>
+    <string name="search_page_search_hint">பாடலாசிரியர், தலைப்பு</string>
+    <string name="search_page_no_results">பாடல் இல்லை</string>
+    <string name="home_title">ஆராதானா</string>
+    <string name="app_nav_drawer_search">தேடல்</string>
+    <string name="app_nav_drawer_home">முகப்பு</string>
+    <string name="app_nav_drawer_about">பற்றி</string>
+    <string name="app_display_title">ஆராதானா</string>
+    <string name="about_page_title">பற்றி</string>
+</resources>
