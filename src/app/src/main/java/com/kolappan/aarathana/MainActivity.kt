@@ -29,6 +29,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kolappan.aarathana.ui.viewmodels.SongViewModel
 import com.kolappan.aarathana.ui.theme.AarathanaTheme
 import com.kolappan.aarathana.models.Song
+import com.kolappan.aarathana.models.SongMetadata
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,14 +48,14 @@ class MainActivity : ComponentActivity() {
 fun GreetingPreview() {
     AarathanaTheme {
         val mockSongs = listOf(
-            Song("Song 1", "Author 1", "Lyrics 1", "God 1"),
-            Song("Song 2", "Author 2", "Lyrics 2", "God 2")
+            SongMetadata("Song 1", "Author 1", "God 1", "song1.md"),
+            SongMetadata("Song 2", "Author 2", "God 2", "song2.md")
         )
         val navController = rememberNavController()
         AppNavigationContent(
             navController = navController,
             songs = mockSongs,
-            onGetSongByTitle = { title -> mockSongs.find { it.title == title } }
+            onGetSongByTitle = { title -> Song(title, "Author", "Lyrics", "God") }
         )
     }
 }
@@ -78,10 +79,10 @@ fun AppNavigation(
 @Composable
 fun AppNavigationContent(
     navController: androidx.navigation.NavHostController,
-    songs: List<Song>,
+    songs: List<SongMetadata>,
     onGetSongByTitle: (String) -> Song?,
-    onGetSongsByAuthor: (String) -> List<Song> = { emptyList() },
-    onSearch: (String) -> List<Song> = { emptyList() }
+    onGetSongsByAuthor: (String) -> List<SongMetadata> = { emptyList() },
+    onSearch: (String) -> List<SongMetadata> = { emptyList() }
 ) {
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()

@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.kolappan.aarathana.data.SongRepository
 import com.kolappan.aarathana.models.Song
+import com.kolappan.aarathana.models.SongMetadata
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -11,26 +12,27 @@ import kotlinx.coroutines.flow.asStateFlow
 class SongViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = SongRepository(application)
 
-    private val _songsState = MutableStateFlow<List<Song>>(emptyList())
-    val songsState: StateFlow<List<Song>> = _songsState.asStateFlow()
+    private val _songsState = MutableStateFlow<List<SongMetadata>>(emptyList())
+    val songsState: StateFlow<List<SongMetadata>> = _songsState.asStateFlow()
 
     init {
         loadSongs()
     }
 
     private fun loadSongs() {
-        _songsState.value = repository.getSongs()
+        _songsState.value = repository.getSongsMetadata()
     }
 
     fun getSongByTitle(title: String): Song? {
-        return _songsState.value.find { it.title == title }
+        val metadata = _songsState.value.find { it.title == title } ?: return null
+        return repository.getSongWithLyrics(metadata)
     }
 
-    fun getSongsByAuthor(author: String): List<Song> {
+    fun getSongsByAuthor(author: String): List<SongMetadata> {
         return _songsState.value.filter { it.author == author }
     }
 
-    fun searchSongs(query: String): List<Song> {
+    fun searchSongs(query: String): List<SongMetadata> {
         val songs = _songsState.value
         if (query.isBlank()) return songs
         

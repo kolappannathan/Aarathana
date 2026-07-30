@@ -54,6 +54,38 @@ android {
     }
 }
 
+tasks.register("generateSongIndex") {
+    val songsDir = file("src/main/assets/songs")
+    val outputFile = file("src/main/assets/songs_index.json")
+
+    inputs.dir(songsDir)
+    outputs.file(outputFile)
+
+    doLast {
+        val songs = songsDir.listFiles { _, name -> name.endsWith(".md") }?.map { file ->
+            val content = file.readText()
+            val header = content.split("---")[0]
+            var title = ""
+            var author = ""
+            var mainGod = ""
+            header.lines().forEach { line ->
+                when {
+                    line.startsWith("title:") -> title = line.removePrefix("title:").trim()
+                    line.startsWith("author:") -> author = line.removePrefix("author:").trim()
+                    line.startsWith("mainGod:") -> mainGod = line.removePrefix("mainGod:").trim()
+                }
+            }
+            "{\"title\":\"$title\",\"author\":\"$author\",\"mainGod\":\"$mainGod\",\"fileName\":\"${file.name}\"}"
+        } ?: emptyList()
+
+        outputFile.writeText("[${songs.joinToString(",")}]")
+    }
+}
+
+tasks.named("preBuild") {
+    dependsOn("generateSongIndex")
+}
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)

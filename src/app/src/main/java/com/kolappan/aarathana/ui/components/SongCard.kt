@@ -14,10 +14,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.kolappan.aarathana.models.Song
+import com.kolappan.aarathana.models.SongMetadata
 
 @Composable
-fun SongCard(song: Song, navController: NavController, modifier: Modifier = Modifier) {
+fun SongCard(song: SongMetadata, navController: NavController, modifier: Modifier = Modifier) {
     Card(
         onClick = { navController.navigate("lyrics/${song.title}") },
         colors = CardDefaults.cardColors(
@@ -45,11 +45,11 @@ fun SongCard(song: Song, navController: NavController, modifier: Modifier = Modi
 @Preview(showBackground = true)
 @Composable
 fun SongCardPreview() {
-    val mockSong = Song(
+    val mockSong = SongMetadata(
         title = "Sample Song Title",
         author = "Sample Author",
-        lyrics = "Sample Lyrics",
-        mainGod = "God"
+        mainGod = "God",
+        fileName = "sample.md"
     )
     SongCard(song = mockSong, navController = rememberNavController())
 }

@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.kolappan.aarathana.models.Song
+import com.kolappan.aarathana.models.SongMetadata
 import com.kolappan.aarathana.ui.components.AarathanaTopBar
 import com.kolappan.aarathana.ui.components.SongListContent
 
@@ -20,7 +20,7 @@ import com.kolappan.aarathana.ui.components.SongListContent
 fun AuthorPage(
     navController: NavController,
     authorName: String,
-    songs: List<Song>
+    songs: List<SongMetadata>
 ) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -47,8 +47,8 @@ fun AuthorPage(
 fun AuthorPagePreview() {
     val navController = rememberNavController()
     val mockSongs = listOf(
-        Song("Song 1", "Author 1", "Lyrics 1", "God 1"),
-        Song("Song 2", "Author 1", "Lyrics 2", "God 2")
+        SongMetadata("Song 1", "Author 1", "God 1", "song1.md"),
+        SongMetadata("Song 2", "Author 1", "God 2", "song2.md")
     )
     AuthorPage(navController, "Author 1", mockSongs)
 }

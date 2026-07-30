@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.kolappan.aarathana.R
-import com.kolappan.aarathana.models.Song
+import com.kolappan.aarathana.models.SongMetadata
 import com.kolappan.aarathana.ui.components.AarathanaTopBar
 import com.kolappan.aarathana.ui.components.SongListContent
 
@@ -24,7 +24,7 @@ import com.kolappan.aarathana.ui.components.SongListContent
 @Composable
 fun SearchPage(
     navController: NavController,
-    onSearch: (String) -> List<Song>
+    onSearch: (String) -> List<SongMetadata>
 ) {
     var searchQuery by remember { mutableStateOf("") }
     val filteredSongs = remember(searchQuery) { onSearch(searchQuery) }
@@ -83,8 +83,8 @@ fun SearchPage(
 fun SearchPagePreview() {
     val navController = rememberNavController()
     val mockSongs = listOf(
-        Song("Song 1", "Author 1", "Lyrics 1", "God 1"),
-        Song("Song 2", "Author 2", "Lyrics 2", "God 2")
+        SongMetadata("Song 1", "Author 1", "God 1", "song1.md"),
+        SongMetadata("Song 2", "Author 2", "God 2", "song2.md")
     )
     SearchPage(
         navController = navController,

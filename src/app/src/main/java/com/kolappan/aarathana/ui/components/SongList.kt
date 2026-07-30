@@ -9,11 +9,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.kolappan.aarathana.models.Song
+import com.kolappan.aarathana.models.SongMetadata
 
 @Composable
 fun SongListContent(
-    songs: List<Song>,
+    songs: List<SongMetadata>,
     navController: NavController,
     modifier: Modifier = Modifier
 ) {
@@ -31,9 +31,9 @@ fun SongListContent(
 fun SongListPreview() {
     val navController = rememberNavController()
     val mockSongs = listOf(
-        Song("Song 1", "Author 1", "Lyrics 1", "God 1"),
-        Song("Song 2", "Author 2", "Lyrics 2", "God 2"),
-        Song("Song 3", "Author 3", "Lyrics 3", "God 3")
+        SongMetadata("Song 1", "Author 1", "God 1", "song1.md"),
+        SongMetadata("Song 2", "Author 2", "God 2", "song2.md"),
+        SongMetadata("Song 3", "Author 3", "God 3", "song3.md")
     )
     SongListContent(mockSongs, navController)
 }

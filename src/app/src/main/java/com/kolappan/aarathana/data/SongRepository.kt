@@ -2,50 +2,42 @@ package com.kolappan.aarathana.data
 
 import android.content.Context
 import com.kolappan.aarathana.models.Song
+import com.kolappan.aarathana.models.SongMetadata
+import kotlinx.serialization.json.Json
 
 class SongRepository(private val context: Context) {
-    private var cachedSongs: List<Song>? = null
-
-    fun getSongs(): List<Song> {
-        return cachedSongs ?: loadSongs().also { cachedSongs = it }
+    private var cachedMetadata: List<SongMetadata>? = null
+    
+    private val json = Json {
+        ignoreUnknownKeys = true
     }
 
-    private fun loadSongs(): List<Song> {
-        val songs = mutableListOf<Song>()
-        val assetsManager = context.assets
-        val songFiles = assetsManager.list("songs") ?: return emptyList()
-
-        for (fileName in songFiles) {
-            if (fileName.endsWith(".md")) {
-                val content = assetsManager.open("songs/$fileName").bufferedReader().use { it.readText() }
-                parseMarkdownSong(content)?.let { songs.add(it) }
-            }
-        }
-        return songs
+    fun getSongsMetadata(): List<SongMetadata> {
+        return cachedMetadata ?: loadIndex().also { cachedMetadata = it }
     }
 
-    private fun parseMarkdownSong(content: String): Song? {
-        val parts = content.split("---", limit = 2)
-        if (parts.size < 2) return null
-
-        val header = parts[0]
-        val lyrics = parts[1].trim()
-
-        var title = ""
-        var author = ""
-        var mainGod = ""
-
-        header.lines().forEach { line ->
-            when {
-                line.startsWith("title:") -> title = line.removePrefix("title:").trim()
-                line.startsWith("author:") -> author = line.removePrefix("author:").trim()
-                line.startsWith("mainGod:") -> mainGod = line.removePrefix("mainGod:").trim()
-            }
+    private fun loadIndex(): List<SongMetadata> {
+        return try {
+            val jsonString = context.assets.open("songs_index.json").bufferedReader().use { it.readText() }
+            json.decodeFromString<List<SongMetadata>>(jsonString)
+        } catch (e: Exception) {
+            emptyList()
         }
+    }
 
-        return if (title.isNotEmpty()) {
-            Song(title, author, lyrics, mainGod)
-        } else {
+    fun getSongWithLyrics(metadata: SongMetadata): Song? {
+        return try {
+            val content = context.assets.open("songs/${metadata.fileName}").bufferedReader().use { it.readText() }
+            val parts = content.split("---", limit = 2)
+            val lyrics = if (parts.size >= 2) parts[1].trim() else ""
+            
+            Song(
+                title = metadata.title,
+                author = metadata.author,
+                lyrics = lyrics,
+                mainGod = metadata.mainGod
+            )
+        } catch (e: Exception) {
             null
         }
     }
