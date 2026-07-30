@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.kolappan.aarathana.data.SongRepository
 import com.kolappan.aarathana.models.Song
-import com.kolappan.aarathana.models.SongList
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -12,8 +11,8 @@ import kotlinx.coroutines.flow.asStateFlow
 class SongViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = SongRepository(application)
 
-    private val _songsState = MutableStateFlow<SongList?>(null)
-    val songsState: StateFlow<SongList?> = _songsState.asStateFlow()
+    private val _songsState = MutableStateFlow<List<Song>>(emptyList())
+    val songsState: StateFlow<List<Song>> = _songsState.asStateFlow()
 
     init {
         loadSongs()
@@ -24,15 +23,15 @@ class SongViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getSongByTitle(title: String): Song? {
-        return _songsState.value?.songs?.find { it.title == title }
+        return _songsState.value.find { it.title == title }
     }
 
     fun getSongsByAuthor(author: String): List<Song> {
-        return _songsState.value?.songs?.filter { it.author == author } ?: emptyList()
+        return _songsState.value.filter { it.author == author }
     }
 
     fun searchSongs(query: String): List<Song> {
-        val songs = _songsState.value?.songs ?: return emptyList()
+        val songs = _songsState.value
         if (query.isBlank()) return songs
         
         return songs.filter { 

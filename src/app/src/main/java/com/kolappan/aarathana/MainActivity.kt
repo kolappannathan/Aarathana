@@ -63,8 +63,7 @@ fun GreetingPreview() {
 fun AppNavigation(
     viewModel: SongViewModel = viewModel()
 ) {
-    val songsState by viewModel.songsState.collectAsState()
-    val songs = songsState?.songs ?: emptyList()
+    val songs by viewModel.songsState.collectAsState()
     val navController = rememberNavController()
     
     AppNavigationContent(
