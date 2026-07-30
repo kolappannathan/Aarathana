@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
  - Added clickable tags for god names.
  - Tamil app localization
+ - Update target SDK version
  
 ### Changed
  - Songs are now stored in markdown.
