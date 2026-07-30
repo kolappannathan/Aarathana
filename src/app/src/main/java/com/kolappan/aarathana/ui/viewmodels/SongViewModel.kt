@@ -32,6 +32,10 @@ class SongViewModel(application: Application) : AndroidViewModel(application) {
         return _songsState.value.filter { it.author == author }
     }
 
+    fun getSongsByGod(god: String): List<SongMetadata> {
+        return _songsState.value.filter { it.mainGod == god }
+    }
+
     fun searchSongs(query: String): List<SongMetadata> {
         val songs = _songsState.value
         if (query.isBlank()) return songs

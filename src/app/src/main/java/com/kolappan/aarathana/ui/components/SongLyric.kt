@@ -15,12 +15,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.kolappan.aarathana.R
 import com.kolappan.aarathana.models.Song
 
 @Composable
@@ -37,7 +39,7 @@ fun SongLyricComponent(song: Song, navController: NavController, modifier: Modif
             if (song.author.isNotEmpty()) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        text = "பாடல் இயற்றியவர்: ",
+                        text = stringResource(R.string.song_lyric_page_author) + ": ",
                         fontStyle = FontStyle.Italic
                     )
                     Text(
@@ -47,6 +49,23 @@ fun SongLyricComponent(song: Song, navController: NavController, modifier: Modif
                         textDecoration = TextDecoration.Underline,
                         modifier = Modifier.clickable {
                             navController.navigate("author/${song.author}")
+                        }
+                    )
+                }
+            }
+            if (song.mainGod.isNotEmpty()) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        text = stringResource(R.string.song_lyric_page_god) + ": ",
+                        fontStyle = FontStyle.Italic
+                    )
+                    Text(
+                        text = song.mainGod,
+                        fontStyle = FontStyle.Italic,
+                        color = MaterialTheme.colorScheme.primary,
+                        textDecoration = TextDecoration.Underline,
+                        modifier = Modifier.clickable {
+                            navController.navigate("god/${song.mainGod}")
                         }
                     )
                 }

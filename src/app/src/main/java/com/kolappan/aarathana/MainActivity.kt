@@ -22,7 +22,7 @@ import com.kolappan.aarathana.ui.pages.HomePage
 import com.kolappan.aarathana.ui.pages.SongLyricPage
 import com.kolappan.aarathana.ui.pages.AboutPage
 import com.kolappan.aarathana.ui.pages.SearchPage
-import com.kolappan.aarathana.ui.pages.AuthorPage
+import com.kolappan.aarathana.ui.pages.TagPage
 import com.kolappan.aarathana.ui.components.AppNavigationDrawerContent
 import kotlinx.coroutines.launch
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -72,6 +72,7 @@ fun AppNavigation(
         songs = songs,
         onGetSongByTitle = { title -> viewModel.getSongByTitle(title) },
         onGetSongsByAuthor = { author -> viewModel.getSongsByAuthor(author) },
+        onGetSongsByGod = { god -> viewModel.getSongsByGod(god) },
         onSearch = { query -> viewModel.searchSongs(query) }
     )
 }
@@ -82,6 +83,7 @@ fun AppNavigationContent(
     songs: List<SongMetadata>,
     onGetSongByTitle: (String) -> Song?,
     onGetSongsByAuthor: (String) -> List<SongMetadata> = { emptyList() },
+    onGetSongsByGod: (String) -> List<SongMetadata> = { emptyList() },
     onSearch: (String) -> List<SongMetadata> = { emptyList() }
 ) {
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
@@ -134,7 +136,17 @@ fun AppNavigationContent(
                 val authorName = backStackEntry.arguments?.getString("authorName")
                 if (authorName != null) {
                     val authorSongs = onGetSongsByAuthor(authorName)
-                    AuthorPage(navController, authorName, authorSongs)
+                    TagPage(navController, authorName, authorSongs)
+                }
+            }
+            composable(
+                route = "god/{godName}",
+                arguments = listOf(navArgument("godName") { type = NavType.StringType })
+            ) { backStackEntry ->
+                val godName = backStackEntry.arguments?.getString("godName")
+                if (godName != null) {
+                    val godSongs = onGetSongsByGod(godName)
+                    TagPage(navController, godName, godSongs)
                 }
             }
         }

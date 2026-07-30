@@ -17,9 +17,9 @@ import com.kolappan.aarathana.ui.components.AarathanaTopBar
 import com.kolappan.aarathana.ui.components.SongListContent
 
 @Composable
-fun AuthorPage(
+fun TagPage(
     navController: NavController,
-    authorName: String,
+    tagTitle: String,
     songs: List<SongMetadata>
 ) {
     Scaffold(
@@ -28,7 +28,7 @@ fun AuthorPage(
             AarathanaTopBar(
                 navController = navController,
                 canNavigateBack = true,
-                title = authorName
+                title = tagTitle
             )
         }) { innerPadding ->
         Column(
@@ -44,11 +44,11 @@ fun AuthorPage(
 
 @Composable
 @Preview(showBackground = true)
-fun AuthorPagePreview() {
+fun TagPagePreview() {
     val navController = rememberNavController()
     val mockSongs = listOf(
         SongMetadata("Song 1", "Author 1", "God 1", "song1.md"),
         SongMetadata("Song 2", "Author 1", "God 2", "song2.md")
     )
-    AuthorPage(navController, "Author 1", mockSongs)
+    TagPage(navController, "Title tag", mockSongs)
 }

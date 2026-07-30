@@ -10,4 +10,6 @@
     <string name="app_nav_drawer_about">About</string>
     <string name="app_display_title">Aarathana</string>
     <string name="about_page_title">About</string>
+    <string name="song_lyric_page_author">Author</string>
+    <string name="song_lyric_page_god">God</string>
 </resources>
