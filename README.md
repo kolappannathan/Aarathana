@@ -5,4 +5,4 @@ An Android application for tamil devotional songs.
 
 ### Screenshots
 
-<img src="./images/screenshots/20240802_142028.jpg" width="30%"> <img src="./images/screenshots/20240802_142032.jpg" width="30%"> <img src="./images/screenshots/20240802_142037.jpg" width="30%">
+<img src="./images/screenshots/20260731_012412.png" width="30%"> <img src="./images/screenshots/20260731_012446.png" width="30%"> <img src="./images/screenshots/20260731_012453.png" width="30%">
