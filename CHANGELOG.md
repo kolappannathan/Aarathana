@@ -4,11 +4,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 ### Added
+ - Added clickable tags for god names.
  - Tamil app localization
  
 ### Changed
  - Songs are now stored in markdown.
  - Song index is separated from lyrics using build script.
+ - Updated gradle version
 
 ## [2.0.0] - 2026-05-19
 ### Added
