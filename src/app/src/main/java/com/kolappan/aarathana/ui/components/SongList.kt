@@ -4,12 +4,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.kolappan.aarathana.models.SongMetadata
+import kotlinx.coroutines.delay
 
 @Composable
 fun SongListContent(
@@ -17,8 +22,17 @@ fun SongListContent(
     navController: NavController,
     modifier: Modifier = Modifier
 ) {
+    val focusRequester = remember { FocusRequester() }
+
+    LaunchedEffect(Unit) {
+        delay(100)
+        focusRequester.requestFocus()
+    }
+
     LazyColumn(
-        modifier = modifier.padding(start = 8.dp, end = 8.dp)
+        modifier = modifier
+            .padding(start = 8.dp, end = 8.dp)
+            .focusRequester(focusRequester)
     ) {
         items(songs) { song ->
             SongCard(song, navController)

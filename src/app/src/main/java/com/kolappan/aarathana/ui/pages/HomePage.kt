@@ -24,7 +24,7 @@ import com.kolappan.aarathana.ui.components.SongListContent
 fun HomePage(
     navController: NavController,
     songs: List<SongMetadata>,
-    onMenuClick: () -> Unit
+    onMenuClick: (() -> Unit)?
 ) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),

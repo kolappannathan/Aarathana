@@ -12,8 +12,8 @@ android {
         applicationId = "com.kolappan.aarathana"
         minSdk = 31
         targetSdk = 37
-        versionCode = 30101
-        versionName = "3.1.1"
+        versionCode = 40000
+        versionName = "4.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -105,6 +105,8 @@ dependencies {
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.androidx.tv.material)
+    implementation(libs.androidx.tv.foundation)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

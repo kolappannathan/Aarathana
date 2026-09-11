@@ -14,6 +14,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kolappan.aarathana.R
+import com.kolappan.aarathana.models.navigationItems
 
 @Composable
 fun AppNavigationDrawerContent(
@@ -25,36 +26,19 @@ fun AppNavigationDrawerContent(
         Text(stringResource(id = R.string.app_display_title), modifier = Modifier.padding(16.dp), style = MaterialTheme.typography.titleLarge)
         HorizontalDivider()
         Spacer(modifier = Modifier.height(8.dp))
-        NavigationDrawerItem(
-            label = { Text(stringResource(R.string.app_nav_drawer_home)) },
-            selected = currentRoute == "home",
-            onClick = {
-                onNavigate("home")
-                onCloseDrawer()
-            },
-            icon = { Icon(Icons.Default.Home, contentDescription = null) },
-            modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
-        )
-        NavigationDrawerItem(
-            label = { Text(stringResource(R.string.app_nav_drawer_search)) },
-            selected = currentRoute == "search",
-            onClick = {
-                onNavigate("search")
-                onCloseDrawer()
-            },
-            icon = { Icon(Icons.Default.Search, contentDescription = null) },
-            modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
-        )
-        NavigationDrawerItem(
-            label = { Text(stringResource(R.string.app_nav_drawer_about)) },
-            selected = currentRoute == "about",
-            onClick = {
-                onNavigate("about")
-                onCloseDrawer()
-            },
-            icon = { Icon(Icons.Default.Info, contentDescription = null) },
-            modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
-        )
+        
+        navigationItems.forEach { item ->
+            NavigationDrawerItem(
+                label = { Text(stringResource(item.labelRes)) },
+                selected = currentRoute == item.route,
+                onClick = {
+                    onNavigate(item.route)
+                    onCloseDrawer()
+                },
+                icon = { Icon(item.icon, contentDescription = null) },
+                modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
+            )
+        }
     }
 }
 

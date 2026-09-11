@@ -13,6 +13,8 @@ composeBom = "2026.08.00"
 navigationRuntimeKtx = "2.10.0"
 navigationCompose = "2.10.0"
 kotlinxSerializationJson = "1.11.0"
+tvMaterial = "1.1.0"
+tvFoundation = "1.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -35,6 +37,8 @@ androidx-compose-material-icons-core = { group = "androidx.compose.material", na
 androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+androidx-tv-material = { group = "androidx.tv", name = "tv-material", version.ref = "tvMaterial" }
+androidx-tv-foundation = { group = "androidx.tv", name = "tv-foundation", version.ref = "tvFoundation" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
